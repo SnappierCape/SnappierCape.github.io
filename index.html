@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ulrico Luigi Nava — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:          #F8F8F6;
+      --fg:          #111111;
+      --navy:        #1C3557;
+      --navy-light:  #EEF2F7;
+      --rule:        #DDDDD9;
+      --muted:       #6B6B6B;
+      --tag-bg:      #EEF2F7;
+      --tag-fg:      #1C3557;
+      --accent-bar:  2px solid #1C3557;
+      --max:         740px;
+      --serif:       'DM Serif Display', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 24px;
+    }
+    nav .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    nav .nav-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    nav .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    nav .nav-links a:hover { color: var(--navy); }
+
+    /* ── LAYOUT ─────────────────────────────────────────────── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      line-height: 1.15;
+      color: var(--fg);
+      margin-bottom: 22px;
+    }
+    .hero-summary {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hero-links a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid var(--navy);
+      padding: 7px 14px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .hero-links a:hover {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* ── SECTION ────────────────────────────────────────────── */
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    /* ── PROJECT BLOCK ──────────────────────────────────────── */
+    .project {
+      margin-bottom: 64px;
+    }
+    .project:last-child { margin-bottom: 0; }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .project-index {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      line-height: 1.25;
+      color: var(--fg);
+    }
+    .project-problem {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--fg);
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .project-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Signature element: the navy left-bar callout */
+    .project-insight {
+      border-left: var(--accent-bar);
+      padding: 12px 20px;
+      background: var(--navy-light);
+      margin: 20px 0;
+    }
+    .project-insight-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+    .project-insight p {
+      font-size: 0.88rem;
+      color: var(--fg);
+      line-height: 1.65;
+    }
+
+    /* Tags */
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      padding: 3px 9px;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .project-link:hover { border-bottom-color: var(--navy); }
+
+    .project-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 64px 0;
+    }
+    .project-divider:last-child { display: none; }
+
+    /* ── INVESTMENTS (fac-simile) ───────────────────────────── */
+    .investments-note {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: var(--tag-bg);
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .investments-summary {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .inv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-bottom: 32px;
+    }
+    .inv-cell {
+      background: var(--bg);
+      padding: 22px 20px;
+    }
+    .inv-cell-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .inv-cell-value {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--navy);
+    }
+    .inv-cell-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .inv-classes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .inv-class-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .inv-class-name {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--fg);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .inv-bar-track {
+      flex: 1;
+      height: 5px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .inv-bar-fill {
+      height: 100%;
+      background: var(--navy);
+      border-radius: 2px;
+    }
+    .inv-class-pct {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      width: 36px;
+      text-align: right;
+    }
+    .inv-disclaimer {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── ABOUT ──────────────────────────────────────────────── */
+    .about-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 580px;
+    }
+    .about-body + .about-body { margin-top: 16px; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      padding: 40px 0 32px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--navy);
+    }
+    .footer-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--navy); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .inv-grid { grid-template-columns: 1fr 1fr; }
+      nav .nav-links { gap: 16px; }
+    }
+    @media (max-width: 420px) {
+      .inv-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-name" href="#top">Ulrico Luigi Nava</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#investments">Investments</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="mailto:ulriconava.main@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page" id="top">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="hero-eyebrow">Finance · Data Science · Machine Learning</p>
+      <h1>Ulrico Luigi Nava</h1>
+      <p class="hero-summary">
+        MSc candidate at Erasmus University Rotterdam combining a BSc in Finance from Bocconi
+        with applied research in deep reinforcement learning and three years of independent
+        consulting. I build at the intersection of quantitative finance and AI.
+      </p>
+      <div class="hero-links">
+        <a href="https://github.com/SnappierCape" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:ulriconava.main@gmail.com">Email</a>
+        <a href="#projects">View Projects ↓</a>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">Selected Projects</p>
+
+      <!-- PROJECT 01 -->
+      <div class="project">
+        <div class="project-header">
+          <span class="project-index">01</span>
+          <h2 class="project-title">Multi-Agent RL for Schiphol Airport Cargo</h2>
+        </div>
+        <p class="project-problem">
+          Can autonomous agents learn to coordinate truck slot allocation at one of
+          Europe's busiest cargo hubs — without a central controller?
+        </p>
+        <p class="project-body">
+          Amsterdam Airport Schiphol's cargo hub operates without a unified slot booking system,
+          leading to dock congestion during peak periods. This project builds a full discrete-event
+          simulation of the landside cargo ecosystem using SimPy, wraps it as a PettingZoo
+          multi-agent environment, and trains MAPPO agents via BenchMARL and TorchRL.
+          Three agent types interact — a Transporter (51 actions), four GHAs with shared policy
+          (193 actions each), and an Orchestrator acting last (251 actions) — under a custom
+          α-blended reward structure that balances private efficiency with global hub throughput.
+          The environment enforces real DTP slot booking rules including frozen windows, priority
+          windows, ANPR gate checks, and race condition guards across simultaneous agent actions.
+        </p>
+        <div class="project-insight">
+          <p class="project-insight-label">Key engineering decision</p>
+          <p>
+            Bridging SimPy's continuous event loop with PettingZoo's discrete step interface
+            required a custom "Time-Warping Window" macro-step pattern. At each RL step,
+            SimPy advances by a fixed Δt, flushes the sensor log, and only then emits rewards
+            and observations — keeping the MDP well-defined without halting the simulation clock.
+          </p>
+        </div>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">TorchRL</span>
+            <span class="tag">BenchMARL</span>
+            <span class="tag">PettingZoo</span>
+            <span class="tag">SimPy</span>
+            <span class="tag">W&amp;B</span>
+            <span class="tag">MAPPO</span>
+          </div>
+          <a class="project-link" href="https://github.com/SnappierCape/ds-marl-air-cargo" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <hr class="project-divider" />
+
+      <!-- PROJECT 02 -->
+      <div class="project">
+        <div class="project-header">
+          <span class="project-index">02</span>
+          <h2 class="project-title">Ishihara CNN — Color Blindness Recognition</h2>
+        </div>
+        <p class="project-problem">
+          Ishihara charts encode digits through color cluster distributions, not strokes.
+          Can a compact CNN learn color relationships well enough to classify them?
+        </p>
+        <p class="project-body">
+          A PyTorch CNN trained on 1,400 auto-generated Ishihara chart images to classify
+          digits 0–9. The task is fundamentally different from MNIST — the model must learn
+          spatial color distributions rather than stroke geometry. The project runs a
+          structured experiment log across 13 runs, testing scheduler strategies
+          (ReduceLROnPlateau vs CosineAnnealingLR vs none), resolution variants
+          (24×24 to 256×256), and augmentation techniques. Final architecture uses
+          three Conv blocks with BatchNorm, AdaptiveAvgPool2d for resolution independence,
+          and a two-layer FC classifier — 129,290 trainable parameters total.
+        </p>
+        <div class="project-insight">
+          <p class="project-insight-label">Counterintuitive finding</p>
+          <p>
+            Lower resolution (24×24) outperformed 128×128 and 256×256 inputs, reaching
+            99.6% test accuracy on 280 samples. Because AdaptiveAvgPool2d collapses all
+            spatial information before classification, higher resolution added compute cost
+            without adding signal to the classification head — and smaller spatial maps
+            forced the filters to learn color aggregation more directly.
+          </p>
+        </div>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Jupyter</span>
+          </div>
+          <a class="project-link" href="https://github.com/SnappierCape/ds-ishihara-colorblindness" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <hr class="project-divider" />
+
+      <!-- PROJECT 03 -->
+      <div class="project">
+        <div class="project-header">
+          <span class="project-index">03</span>
+          <h2 class="project-title">Ames House Price Prediction — ML from Scratch</h2>
+        </div>
+        <p class="project-problem">
+          What happens when you build the entire ML pipeline — from missing data imputation
+          to cross-validated regression — without touching scikit-learn?
+        </p>
+        <p class="project-body">
+          A full data science pipeline on the Ames Housing dataset implemented in raw NumPy
+          and Pandas. Every component is written from scratch: chi-squared MCAR tests,
+          one-hot and ordinal encoding, min-max normalization, stratified K-Fold CV with
+          quantile binning, OLS and Ridge regression via normal equations, gradient descent
+          linear regression with early stopping, and Lasso via coordinate descent. Four
+          dataframe variants (original, log, winsorized, IQR-capped) are evaluated across
+          all models to measure the effect of outlier handling strategy on performance.
+        </p>
+        <div class="project-insight">
+          <p class="project-insight-label">Why build from scratch</p>
+          <p>
+            The goal was not to maximize RMSE but to build a precise, first-principles
+            understanding of the pipeline. Knowing exactly what stratification does
+            during CV, why Ridge shrinks differently from Lasso, and where preprocessing
+            leakage enters the pipeline matters more for long-term depth than calling
+            <code style="font-family: var(--mono); font-size: 0.82em;">sklearn.fit()</code>.
+          </p>
+        </div>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Statistics</span>
+            <span class="tag">Regression</span>
+            <span class="tag">Jupyter</span>
+          </div>
+          <a class="project-link" href="https://github.com/SnappierCape/ds-ames-house-price-predictions" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- INVESTMENTS -->
+    <section id="investments">
+      <p class="section-label">Personal Investment Portfolio</p>
+
+      <span class="investments-note">Fac-simile · Illustrative only</span>
+
+      <p class="investments-summary">
+        Five years of personal investing across public equities, index ETFs, and
+        crypto assets. The practice runs alongside the academic and consulting work —
+        applying financial statement analysis, macro reasoning, and quantitative
+        thinking to real capital allocation decisions.
+      </p>
+
+      <div class="inv-grid">
+        <div class="inv-cell">
+          <p class="inv-cell-label">Experience</p>
+          <p class="inv-cell-value">5 yrs</p>
+          <p class="inv-cell-sub">Active since 2021</p>
+        </div>
+        <div class="inv-cell">
+          <p class="inv-cell-label">Asset classes</p>
+          <p class="inv-cell-value">3</p>
+          <p class="inv-cell-sub">Equities · ETFs · Crypto</p>
+        </div>
+        <div class="inv-cell">
+          <p class="inv-cell-label">Approach</p>
+          <p class="inv-cell-value">Long</p>
+          <p class="inv-cell-sub">Value + momentum</p>
+        </div>
+      </div>
+
+      <div class="inv-classes">
+        <div class="inv-class-row">
+          <span class="inv-class-name">Equities</span>
+          <div class="inv-bar-track"><div class="inv-bar-fill" style="width: 55%"></div></div>
+          <span class="inv-class-pct">~55%</span>
+        </div>
+        <div class="inv-class-row">
+          <span class="inv-class-name">ETFs</span>
+          <div class="inv-bar-track"><div class="inv-bar-fill" style="width: 30%"></div></div>
+          <span class="inv-class-pct">~30%</span>
+        </div>
+        <div class="inv-class-row">
+          <span class="inv-class-name">Crypto</span>
+          <div class="inv-bar-track"><div class="inv-bar-fill" style="width: 15%"></div></div>
+          <span class="inv-class-pct">~15%</span>
+        </div>
+      </div>
+
+      <p class="inv-disclaimer">
+        Allocation percentages and figures above are illustrative placeholders.
+        No performance data is shown. Update this section with your actual allocations
+        and any results you are comfortable disclosing publicly.
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <p class="about-body">
+        I hold a BSc in Finance from Bocconi University and am completing an MSc in Business
+        Information Management (Data Science track) at Erasmus University Rotterdam. My master's
+        thesis, developed in collaboration with Digital Sundai BV, applies Multi-Agent
+        Reinforcement Learning to optimize ground handler slot allocation at Schiphol Airport.
+      </p>
+      <p class="about-body" style="margin-top:16px;">
+        Alongside academic work I founded Xenithis Consulting Ltd. (UK, 2024), building on
+        three years of independent consulting for European SMEs across financial planning,
+        governance, and technology. I am targeting roles in quantitative finance, data science,
+        and AI in the Netherlands, Switzerland, and Singapore.
+      </p>
+    </section>
+
+  </div><!-- /page -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Ulrico Luigi Nava</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/SnappierCape" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:ulriconava.main@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

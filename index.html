@@ -409,6 +409,7 @@
       <a class="nav-name" href="#top">Ulrico Luigi Nava</a>
       <ul class="nav-links">
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#lab">Lab</a></li>
         <li><a href="#investments">Investments</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="mailto:ulriconava.main@gmail.com">Contact</a></li>
@@ -569,6 +570,65 @@
           </div>
           <a class="project-link" href="https://github.com/SnappierCape/ds-ames-house-price-predictions" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
+      </div>
+
+    </section>
+
+    <!-- LAB -->
+    <section id="lab">
+      <p class="section-label">Home Lab</p>
+
+      <p class="project-problem" style="margin-bottom: 14px;">
+        A self-hosted AI inference stack built on Proxmox with GPU passthrough —
+        used for local LLM inference, agentic coding, and experimentation.
+      </p>
+      <p class="project-body" style="margin-bottom: 24px;">
+        The stack runs Ollama as the inference backend, OpenWebUI as the interface,
+        and Hermes as the coding agent layer. The GPU passthrough setup gives the VM
+        direct hardware access, making it viable for running large models locally
+        without cloud costs or data leaving the machine.
+      </p>
+
+      <div class="inv-grid" style="margin-bottom: 32px;">
+        <div class="inv-cell">
+          <p class="inv-cell-label">Virtualisation</p>
+          <p class="inv-cell-value" style="font-size: 1.1rem; margin-top: 4px;">Proxmox VE</p>
+          <p class="inv-cell-sub">GPU passthrough to VM</p>
+        </div>
+        <div class="inv-cell">
+          <p class="inv-cell-label">Inference</p>
+          <p class="inv-cell-value" style="font-size: 1.1rem; margin-top: 4px;">Ollama</p>
+          <p class="inv-cell-sub">+ OpenWebUI frontend</p>
+        </div>
+        <div class="inv-cell">
+          <p class="inv-cell-label">Agent layer</p>
+          <p class="inv-cell-value" style="font-size: 1.1rem; margin-top: 4px;">Hermes</p>
+          <p class="inv-cell-sub">qwen3:35b model</p>
+        </div>
+      </div>
+
+      <div class="project-insight" style="margin-bottom: 24px;">
+        <p class="project-insight-label">Proof of work</p>
+        <p>
+          The Hermes agent autonomously wrote, structured, and committed a fully playable
+          Pac-Man game to GitHub — including ghost AI, FSM-based game states, collision
+          detection, and a modular entity architecture — without manual intervention on the code.
+          The repository below is the unedited output.
+        </p>
+      </div>
+
+      <div class="project-footer">
+        <div class="tags">
+          <span class="tag">Proxmox</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">OpenWebUI</span>
+          <span class="tag">Hermes Agent</span>
+          <span class="tag">qwen3:35b</span>
+          <span class="tag">GPU Passthrough</span>
+          <span class="tag">Python</span>
+          <span class="tag">Pygame</span>
+        </div>
+        <a class="project-link" href="https://github.com/SnappierCape/prog-pacman-game-hermes-agent" target="_blank" rel="noopener">Pac-Man repo (agent output) →</a>
       </div>
 
     </section>

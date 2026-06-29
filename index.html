@@ -444,21 +444,21 @@
       <div class="project">
         <div class="project-header">
           <span class="project-index">01</span>
-          <h2 class="project-title">Multi-Agent RL for Schiphol Airport Cargo</h2>
+          <h2 class="project-title">Multi-Agent RL for Schiphol Airport Autonomous Dock Allocation</h2>
         </div>
         <p class="project-problem">
           Can autonomous agents learn to coordinate truck slot allocation at one of
-          Europe's busiest cargo hubs — without a central controller?
+          Europe's busiest cargo hubs without human intervention?
         </p>
         <p class="project-body">
           Amsterdam Airport Schiphol's cargo hub operates without a unified slot booking system,
           leading to dock congestion during peak periods. This project builds a full discrete-event
           simulation of the landside cargo ecosystem using SimPy, wraps it as a PettingZoo
           multi-agent environment, and trains MAPPO agents via BenchMARL and TorchRL.
-          Three agent types interact — a Transporter (51 actions), four GHAs with shared policy
-          (193 actions each), and an Orchestrator acting last (251 actions) — under a custom
+          Three agent types interact: a Transporter (51 actions), four Ground Handlers with shared policy
+          (193 actions each), and an Orchestrator acting last (251 actions). They act under a custom
           α-blended reward structure that balances private efficiency with global hub throughput.
-          The environment enforces real DTP slot booking rules including frozen windows, priority
+          The environment enforces real slot booking rules including frozen windows, priority
           windows, ANPR gate checks, and race condition guards across simultaneous agent actions.
         </p>
         <div class="project-insight">
@@ -467,7 +467,7 @@
             Bridging SimPy's continuous event loop with PettingZoo's discrete step interface
             required a custom "Time-Warping Window" macro-step pattern. At each RL step,
             SimPy advances by a fixed Δt, flushes the sensor log, and only then emits rewards
-            and observations — keeping the MDP well-defined without halting the simulation clock.
+            and observations, keeping the MDP well-defined without halting the simulation clock.
           </p>
         </div>
         <div class="project-footer">
@@ -491,7 +491,7 @@
       <div class="project">
         <div class="project-header">
           <span class="project-index">02</span>
-          <h2 class="project-title">Ishihara CNN — Color Blindness Recognition</h2>
+          <h2 class="project-title">Ishihara CNN — Color Blindness Recognition ─ Computer Vision</h2>
         </div>
         <p class="project-problem">
           Ishihara charts encode digits through color cluster distributions, not strokes.
@@ -499,13 +499,13 @@
         </p>
         <p class="project-body">
           A PyTorch CNN trained on 1,400 auto-generated Ishihara chart images to classify
-          digits 0–9. The task is fundamentally different from MNIST — the model must learn
+          digits 0–9. The task is fundamentally different from MNIST: the model must learn
           spatial color distributions rather than stroke geometry. The project runs a
           structured experiment log across 13 runs, testing scheduler strategies
           (ReduceLROnPlateau vs CosineAnnealingLR vs none), resolution variants
           (24×24 to 256×256), and augmentation techniques. Final architecture uses
           three Conv blocks with BatchNorm, AdaptiveAvgPool2d for resolution independence,
-          and a two-layer FC classifier — 129,290 trainable parameters total.
+          and a two-layer FC classifier (129,290 trainable parameters total).
         </p>
         <div class="project-insight">
           <p class="project-insight-label">Counterintuitive finding</p>
@@ -513,7 +513,7 @@
             Lower resolution (24×24) outperformed 128×128 and 256×256 inputs, reaching
             99.6% test accuracy on 280 samples. Because AdaptiveAvgPool2d collapses all
             spatial information before classification, higher resolution added compute cost
-            without adding signal to the classification head — and smaller spatial maps
+            without adding signal to the classification head, and smaller spatial maps
             forced the filters to learn color aggregation more directly.
           </p>
         </div>
@@ -539,7 +539,7 @@
         </div>
         <p class="project-problem">
           What happens when you build the entire ML pipeline — from missing data imputation
-          to cross-validated regression — without touching scikit-learn?
+          to cross-validated regression without touching scikit-learn?
         </p>
         <p class="project-body">
           A full data science pipeline on the Ames Housing dataset implemented in raw NumPy
@@ -553,7 +553,7 @@
         <div class="project-insight">
           <p class="project-insight-label">Why build from scratch</p>
           <p>
-            The goal was not to maximize RMSE but to build a precise, first-principles
+            The goal was never to maximize RMSE but to build a precise, first-principles
             understanding of the pipeline. Knowing exactly what stratification does
             during CV, why Ridge shrinks differently from Lasso, and where preprocessing
             leakage enters the pipeline matters more for long-term depth than calling
@@ -580,8 +580,8 @@
       <p class="section-label">Home Lab</p>
 
       <p class="project-problem" style="margin-bottom: 14px;">
-        A self-hosted AI inference stack built on Proxmox with GPU passthrough —
-        used for local LLM inference, agentic coding, and experimentation.
+        A self-hosted AI inference stack built on Proxmox with GPU passthrough.
+        Used for local LLM inference, agentic coding, avoiding cloud bills and experimentation.
       </p>
       <p class="project-body" style="margin-bottom: 24px;">
         The stack runs Ollama as the inference backend, OpenWebUI as the interface,
@@ -612,8 +612,8 @@
         <p class="project-insight-label">Proof of work</p>
         <p>
           The Hermes agent autonomously wrote, structured, and committed a fully playable
-          Pac-Man game to GitHub — including ghost AI, FSM-based game states, collision
-          detection, and a modular entity architecture — without manual intervention on the code.
+          Pac-Man game to GitHub, including ghost AI, FSM-based game states, collision
+          detection, and a modular entity architecture, without manual intervention on the code.
           The repository below is the unedited output.
         </p>
       </div>
